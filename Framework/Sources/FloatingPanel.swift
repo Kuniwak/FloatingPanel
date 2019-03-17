@@ -625,7 +625,9 @@ class FloatingPanel: NSObject, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.isDecelerating = false
         self.animator = nil
 
-        self.viewcontroller.delegate?.floatingPanelDidEndDecelerating(self.viewcontroller)
+        if let viewController = self.viewcontroller {
+            viewController.delegate?.floatingPanelDidEndDecelerating(viewcontroller)
+        }
 
         if let scrollView = scrollView {
             log.debug("finishAnimation -- scroll offset = \(scrollView.contentOffset)")
